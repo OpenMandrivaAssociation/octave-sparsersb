@@ -1,0 +1,22 @@
+Description: Fix FTBFS against Octave 7
+ Don't use internal functions.
+Origin: upstream, https://savannah.gnu.org/support/download.php?file_id=52082
+Bug: https://savannah.gnu.org/bugs/?61320
+Bug-Debian: https://bugs.debian.org/1009138
+Reviewed-by: Sébastien Villemot <sebastien@debian.org>
+Last-Update: 2022-04-11
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/src/sparsersb.cc
++++ b/src/sparsersb.cc
+@@ -1242,8 +1242,8 @@ err:
+ 						if(ovl(0).issparse() && ovl(0).isreal() && rhs.isreal())
+ 						{
+   							const SparseBoolMatrix sm = SparseBoolMatrix (ovl(0).sparse_matrix_value());
+-							const octave_idx_type * ir = sm.mex_get_ir ();
+-							const octave_idx_type * jc = sm.mex_get_jc ();
++							const octave_idx_type * ir = sm.ridx ();
++							const octave_idx_type * jc = sm.cidx ();
+         						const octave_idx_type nc = sm.cols ();
+ 							RSBOI_DEBUG_NOTICE(RSBOI_D_EMPTY_MSG);
+ 							const RSBOI_T rv = rhs.double_value();

@@ -1,16 +1,19 @@
 %global octpkg sparsersb
 
 Summary:	Interface to the librsb package for Octvae
-Name:		octave-%{octpkg}
+Name:		octave-sparsersb
 Version:	1.0.9
-Release:	1
-Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
+Release:	2
 License:	GPLv3+
 Group:		Sciences/Mathematics
-Url:		https://packages.octave.org/%{octpkg}/
+Url:		https://packages.octave.org/sparsersb/
+Source0:	https://downloads.sourceforge.net/octave/sparsersb-%{version}.tar.gz
+# (debian)
+Patch0:		no-internal-mex-fcns.patch
+Patch1:		honor-cxxflags.patch
 
-BuildRequires:	octave-devel >= 4.0.0
-#BuildRequires:	librsb-devel
+BuildRequires:  octave-devel >= 4.4.0
+BuildRequires:	pkgconfig(librsb)
 
 Requires:	octave(api) = %{octave_api}
 
@@ -18,26 +21,28 @@ Requires(post): octave
 Requires(postun): octave
 
 %description
-Interface to the librsb package implementing the RSB sparse matrix format
-for fast shared-memory sparse matrix computationsin Octave.
+Interface to the librsb package implementing the RSB sparse matrix
+format for fast shared-memory sparse matrix computations.
 
 %files
 %license COPYING
 %doc NEWS
-%dir %{octpkglibdir}
-%{octpkglibdir}/*
 %dir %{octpkgdir}
 %{octpkgdir}/*
+%dir %{octpkglibdir}
+%{octpkglibdir}/*
+#{_metainfodir}/*.metainfo.xml
 
 #---------------------------------------------------------------------------
 
 %prep
 %autosetup -p1 -n %{octpkg}-%{version}
 
-# remove backup files
-#find . -name \*~ -delete
+sed -i -e 's,-std=gnu++11,-std=c++20,' src/configure
 
 %build
+export CC=gcc
+export CXX=g++
 %set_build_flags
 %octave_pkg_build
 

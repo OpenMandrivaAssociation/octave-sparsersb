@@ -1,0 +1,19 @@
+Description: Honor the environment variable CXXFLAGS
+ This is required in Debian, such that hardening flags like
+ -fstack-protector-strong, -Wformat, and -Werror=format-security are
+ used in the compilation of C++ files.
+Author: Rafael Laboissière <rafael@debian.org>
+Forwarded: https://savannah.gnu.org/bugs/index.php?61499
+Last-Update: 2021-11-17
+
+--- octave-sparsersb-1.0.9.orig/src/Makefile
++++ octave-sparsersb-1.0.9/src/Makefile
+@@ -17,7 +17,7 @@
+ sinclude Makeconf
+ # Makeconf is created by the configure script.
+ # You can also not use it but set explicitly the following:
+-CXXFLAGS=$(SPARSERSB_CXXFLAGS) $(OCTAVE_FUNC_DEFINES)
++CXXFLAGS+=$(SPARSERSB_CXXFLAGS) $(OCTAVE_FUNC_DEFINES)
+ LDFLAGS=$(shell $(MKOCTFILE) -p LDFLAGS) $(SPARSERSB_LDFLAGS)
+ CXXFLAGS_CXX11=$(SPARSERSB_CXX11)
+ 
