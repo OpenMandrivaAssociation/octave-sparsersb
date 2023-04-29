@@ -14,6 +14,7 @@ Patch1:		honor-cxxflags.patch
 
 BuildRequires:  octave-devel >= 4.4.0
 BuildRequires:	pkgconfig(librsb)
+BuildRequires:	gomp-devel
 
 Requires:	octave(api) = %{octave_api}
 
@@ -37,8 +38,6 @@ format for fast shared-memory sparse matrix computations.
 
 %prep
 %autosetup -p1 -n %{octpkg}-%{version}
-
-sed -i -e 's,-std=gnu++11,-std=c++20,' src/configure
 
 %build
 export CC=gcc
