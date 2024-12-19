@@ -3,14 +3,18 @@
 Summary:	Interface to the librsb package for Octvae
 Name:		octave-sparsersb
 Version:	1.0.9
-Release:	2
+Release:	3
 License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		https://packages.octave.org/sparsersb/
 Source0:	https://downloads.sourceforge.net/octave/sparsersb-%{version}.tar.gz
+Patch0:		sparsersb-1.0.9-clang.patch
 # (debian)
-Patch0:		no-internal-mex-fcns.patch
 Patch1:		honor-cxxflags.patch
+# https://savannah.gnu.org/bugs/?61320
+Patch2:		bug61320-sparsersb-no-internal-mex-fcns.patch
+#`https://savannah.gnu.org/bugs/index.php?65292
+Patch3:		deprecated-dot-minus.patch
 
 BuildRequires:  octave-devel >= 4.4.0
 BuildRequires:	pkgconfig(librsb)
@@ -40,8 +44,6 @@ format for fast shared-memory sparse matrix computations.
 %autosetup -p1 -n %{octpkg}-%{version}
 
 %build
-export CC=gcc
-export CXX=g++
 %set_build_flags
 %octave_pkg_build
 
