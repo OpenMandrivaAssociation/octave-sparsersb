@@ -1,0 +1,22 @@
+Description: Replace deprecated operator ".-" by "-"
+Author: Rafael Laboissière <rafael@debian.org>
+Forwarded: no
+Last-Update: 2024-02-11
+
+--- octave-sparsersb-1.0.9.orig/src/sparsersb.cc
++++ octave-sparsersb-1.0.9/src/sparsersb.cc
+@@ -3338,11 +3338,11 @@ ret:
+ }
+ /*
+ %!test
+-%! assert( 0==nnz(sparsersb(3,3) .- sparse(3,3)) )
++%! assert( 0==nnz(sparsersb(3,3) - sparse(3,3)) )
+ %!test
+-%! assert( 0==nnz(sparsersb([],[],[],3,3    ) .- sparse([],[],[],3,3    )) )
++%! assert( 0==nnz(sparsersb([],[],[],3,3    ) - sparse([],[],[],3,3    )) )
+ %!test
+-%! assert( 0==nnz(sparsersb([],[],[],3,3,123) .- sparse([],[],[],3,3,321)) )
++%! assert( 0==nnz(sparsersb([],[],[],3,3,123) - sparse([],[],[],3,3,321)) )
+ %!test
+ %! s=sparsersb([2]);
+ %! assert(s==2);

@@ -1,0 +1,11 @@
+--- a/src/sparsersb.cc
++++ b/src/sparsersb.cc
+@@ -118,7 +118,7 @@
+ #define RSBOI_WARN( MSG )
+ #endif
+ #define RSBOI_TODO( MSG ) RSBOI_WARN( MSG )/* new */
+-#define RSBOI_FIXME( MSG ) RSBOI_WARN( "FIXME: "MSG )/* new */
++#define RSBOI_FIXME( MSG ) RSBOI_WARN( "FIXME: " MSG )/* new */
+ 
+ #define RSBOI_PRINTF( ... ) printf( __VA_ARGS__ )
+ #if RSBOI_VERBOSE

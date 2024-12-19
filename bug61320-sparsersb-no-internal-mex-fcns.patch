@@ -1,0 +1,25 @@
+# HG changeset patch
+# User Markus Mützel <markus.muetzel@gmx.de>
+# Date 1633779189 -7200
+#      Sat Oct 09 13:33:09 2021 +0200
+# Node ID 11cafc15faeec2ea20216f8b6e22906df5932e53
+# Parent  67a14d968d2db3ffe34474e6be1c7a2d164ad416
+Don't use internal functions (bug #61320).
+
+* src/sparsersb.cc (subsasgn): Use "ridx" and "cidx" instead of internal
+  functions.
+
+diff -r 67a14d968d2d -r 11cafc15faee src/sparsersb.cc
+--- a/src/sparsersb.cc	Tue Sep 21 11:09:59 2021 +0200
++++ b/src/sparsersb.cc	Sat Oct 09 13:33:09 2021 +0200
+@@ -1242,8 +1242,8 @@
+ 						if(ovl(0).issparse() && ovl(0).isreal() && rhs.isreal())
+ 						{
+   							const SparseBoolMatrix sm = SparseBoolMatrix (ovl(0).sparse_matrix_value());
+-							const octave_idx_type * ir = sm.mex_get_ir ();
+-							const octave_idx_type * jc = sm.mex_get_jc ();
++							const octave_idx_type * ir = sm.ridx ();
++							const octave_idx_type * jc = sm.cidx ();
+         						const octave_idx_type nc = sm.cols ();
+ 							RSBOI_DEBUG_NOTICE(RSBOI_D_EMPTY_MSG);
+ 							const RSBOI_T rv = rhs.double_value();
