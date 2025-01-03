@@ -1,5 +1,8 @@
 %global octpkg sparsersb
 
+# use explicit requires
+%global __requires_exclude /usr/bin/octave
+
 Summary:	Interface to the librsb package for Octvae
 Name:		octave-sparsersb
 Version:	1.0.9
