@@ -6,7 +6,7 @@
 Summary:	Interface to the librsb package for Octvae
 Name:		octave-sparsersb
 Version:	1.0.9
-Release:	3
+Release:	4
 License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		https://packages.octave.org/sparsersb/
