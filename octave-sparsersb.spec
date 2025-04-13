@@ -11,14 +11,6 @@ License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		https://packages.octave.org/sparsersb/
 Source0:	https://downloads.sourceforge.net/octave/sparsersb-%{version}.tar.gz
-Patch0:		sparsersb-1.0.9-clang.patch
-# (debian)
-Patch1:		honor-cxxflags.patch
-# https://savannah.gnu.org/bugs/?61320
-Patch2:		bug61320-sparsersb-no-internal-mex-fcns.patch
-#`https://savannah.gnu.org/bugs/index.php?65292
-Patch3:		deprecated-dot-minus.patch
-
 BuildRequires:  octave-devel >= 4.4.0
 BuildRequires:	pkgconfig(librsb)
 BuildRequires:	gomp-devel
@@ -27,6 +19,16 @@ Requires:	octave(api) = %{octave_api}
 
 Requires(post): octave
 Requires(postun): octave
+
+%patchlist
+sparsersb-1.0.9-clang.patch
+octave-sparsersb-1.0.9-no_c++11.patch
+# (debian)
+honor-cxxflags.patch
+# https://savannah.gnu.org/bugs/?61320
+bug61320-sparsersb-no-internal-mex-fcns.patch
+#`https://savannah.gnu.org/bugs/index.php?65292
+deprecated-dot-minus.patch
 
 %description
 Interface to the librsb package implementing the RSB sparse matrix
