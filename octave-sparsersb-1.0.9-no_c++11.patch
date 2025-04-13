@@ -9,4 +9,23 @@
  AC_SUBST(SPARSERSB_LDFLAGS)
  
  AC_CONFIG_FILES([Makeconf])
+--- a/src/configure
++++ b/src/configure
+@@ -2699,7 +2699,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_
+ /* end confdefs.h.  */
+ $ac_cxx_conftest_cxx11_program
+ _ACEOF
+-for ac_arg in '' -std=gnu++11 -std=gnu++0x -std=c++11 -std=c++0x -qlanglvl=extended0x -AA
++for ac_arg in '' -std=gnu++0x -std=c++0x -qlanglvl=extended0x -AA
+ do
+   CXX="$ac_save_CXX $ac_arg"
+   if ac_fn_cxx_try_compile "$LINENO"
+@@ -3448,7 +3448,7 @@ CXXFLAGS=$save_CXXFLAGS
+ 
+ 
+ 
+-SPARSERSB_CXX11="-std=gnu++11"
++SPARSERSB_CXX11="-std=gnu++17"
+ 
+ 
  
