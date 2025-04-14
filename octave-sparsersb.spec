@@ -6,7 +6,7 @@
 Summary:	Interface to the librsb package for Octvae
 Name:		octave-sparsersb
 Version:	1.0.9
-Release:	4
+Release:	5
 License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		https://packages.octave.org/sparsersb/
@@ -22,7 +22,7 @@ Requires(postun): octave
 
 %patchlist
 sparsersb-1.0.9-clang.patch
-octave-sparsersb-1.0.9-no_c++11.patch
+octave-sparsersb-1.0.9-relax_c++11.patch
 # (debian)
 honor-cxxflags.patch
 # https://savannah.gnu.org/bugs/?61320
